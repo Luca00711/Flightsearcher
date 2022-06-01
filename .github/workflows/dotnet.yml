@@ -21,3 +21,10 @@ jobs:
       run: dotnet restore flightsearcher.Wpf
     - name: Build
       run: dotnet build --no-restore flightsearcher.Wpf
+    - name: commit
+      run: |
+          # Stage the file, commit and push
+          git add flightsearcher.Wpf/bin
+          git commit -m "new build commit"
+          git push origin master
+      
