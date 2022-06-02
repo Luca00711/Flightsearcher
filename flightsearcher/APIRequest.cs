@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using Flurl.Http;
+using Flurl.Util;
 using Newtonsoft;
 using Newtonsoft.Json;
 
@@ -12,29 +14,34 @@ namespace flightsearcher
     
     public class APIRequest
     {
-        public async Task<List<Class>> Request<Class>(string url)
+        public async Task<string> Request(string url)
         {
             try
             {
-                List<Class> list = new List<Class>();
                 var response = await url.GetJsonAsync();
                 int i = 0;
-                foreach (var row in response.rows)
+                foreach (KeyValuePair<string, object> row in response)
                 {
-                    if (i > 20)
+                    if (row.Value is List<object>)
                     {
-                        break;
+                        i++;
                     }
-                    list.Add(JsonConvert.DeserializeObject<Class>(JsonConvert.SerializeObject(row)));
-                    i++;
                 }
-                return list;
+                Console.WriteLine(i);
+                return "list";
             }
             catch (FlurlHttpException e)
             {
                 //Console.WriteLine(e.Message);
                 return null;
             }
-        }        
+        }
+        public static DateTime UnixTimeStampToDateTime( double unixTimeStamp )
+        {
+            // Unix timestamp is seconds past epoch
+            DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            dateTime = dateTime.AddSeconds( unixTimeStamp ).ToLocalTime();
+            return dateTime;
+        }
     }
 }

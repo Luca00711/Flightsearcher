@@ -13,22 +13,20 @@ namespace flightsearcher
 		public MainForm()
 		{
 			Title = "FlightSearcher";
-			MinimumSize = new Size(200, 200);
+			MinimumSize = new Size(500, 500);
 
 			StackLayout stack = new StackLayout();
 			
 			
-			ListBox listBox = new ListBox();
-			listBox.Size = new Size(50, 50);
-			listBox.Items.Add("Item 1");
+			TextBox callsign = new TextBox();
 			Button button = new Button();
 			button.Text = "Click me!";
 			button.Click +=  async (s,e) => {
-				List<Airline> test = await new APIRequest().Request<Airline>("https://www.flightradar24.com/_json/airlines.php");
-				// 
+				string test = await new APIRequest().Request("https://data-cloud.flightradar24.com/zones/fcgi/feed.js?faa=1&satellite=1&mlat=1&flarm=1&adsb=1&gnd=1&air=1&vehicles=1&estimated=1&maxage=14400&gliders=1&callsign=" + callsign.Text +  "&pk=&stats=1");
+				
 			};
 			
-			stack.Items.Add(listBox);
+			stack.Items.Add(callsign);
 			stack.Items.Add(button);
 			
 			Content = stack;
