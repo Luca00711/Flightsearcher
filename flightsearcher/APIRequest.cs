@@ -24,7 +24,9 @@ namespace flightsearcher
                 {
                     if (row.Value is List<object>)
                     {
-                        i++;
+                        var responsetest = await $"https://data-live.flightradar24.com/clickhandler/?flight={row.Key}"
+                            .GetJsonAsync();
+                        Console.WriteLine(responsetest.time.scheduled.arrival);
                     }
                 }
                 Console.WriteLine(i);
