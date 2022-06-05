@@ -11,20 +11,20 @@ namespace flightsearcher.API
     {
         public static async Task<List<Flight>> Request(string url)
         {
+            List<Flight> flights = new List<Flight>();
             try
             {
-                List<Flight> flights = new List<Flight>();
-                var response = await url.GetJsonAsync();
+                var response = await url.WithHeader("User-Agent", "Other").GetJsonAsync();
                 foreach(KeyValuePair<string, object> row in response)
                 {
                     if(row.Value is List<object>)
                     {
                         var responsetest = await $"https://data-live.flightradar24.com/clickhandler/?flight={row.Key}"
-                            .GetJsonAsync();
+                            .WithHeader("User-Agent", "Other").GetJsonAsync();
                        if (responsetest.status.live != false)
                        {
                            TimeSpan flightDuration = Utils.GetFlightDuration(responsetest.time.scheduled.departure, responsetest.time.scheduled.arrival);
-                            if (flightDuration <= new TimeSpan(1,0,0))
+                            if (flightDuration <= new TimeSpan(1,50,0))
                             {
                                 Console.WriteLine("One Added");
                                 responsetest.flightduration = flightDuration;
@@ -38,8 +38,7 @@ namespace flightsearcher.API
             }
             catch (FlurlHttpException e)
             {
-                Console.WriteLine(e.Message);
-                return null;
+                return flights;
             }
         }
     }

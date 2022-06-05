@@ -1,4 +1,8 @@
 using System;
+using System.Threading.Tasks;
+using Eto.Drawing;
+using flightsearcher.Models;
+using Flurl.Http;
 
 namespace flightsearcher.API
 {
@@ -13,6 +17,13 @@ namespace flightsearcher.API
             
             TimeSpan duration = dateTimeArrival - dateTimeDepature;
             return duration;
+        }
+
+        public static async Task<Image> GetPhoto(string registration)
+        {
+            Livery photo = await $"https://api.planespotters.net/pub/photos/reg/{registration}".WithHeader("User-Agent", "Other").GetJsonAsync<Livery>();
+            var response = await $"{photo.photos[0].thumbnail_large.src}".GetBytesAsync();
+            return new Bitmap(response);
         }
     }
 }
