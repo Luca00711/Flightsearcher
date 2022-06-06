@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using flightsearcher.Models;
+using flightsearcher.Utils;
 using Flurl.Http;
 using Newtonsoft.Json;
 
@@ -23,12 +24,15 @@ namespace flightsearcher.API
                             .WithHeader("User-Agent", "Other").GetJsonAsync();
                        if (responsetest.status.live != false)
                        {
-                           TimeSpan flightDuration = Utils.GetFlightDuration(responsetest.time.scheduled.departure, responsetest.time.scheduled.arrival);
-                            if (flightDuration <= new TimeSpan(1,50,0))
+                           TimeSpan flightDuration = Utils.Utils.GetFlightDuration(responsetest.time.scheduled.departure, responsetest.time.scheduled.arrival);
+                            if (flightDuration <= new TimeSpan(1,10,0))
                             {
                                 Console.WriteLine("One Added");
                                 responsetest.flightduration = flightDuration;
                                 responsetest.fnac = $"{responsetest.identification.number.@default} | {responsetest.identification.callsign}";
+                                Database db = new Database();
+                                //db.Test();
+                                db.Query($"INSERT INTO flights (aircraft, fnac, depart, arrival, fd) VALUES ('{responsetest.aircraft.model.text}', '{responsetest.fnac}', '{responsetest.airport.origin.code.icao}', '{responsetest.airport.destination.code.icao}', '{responsetest.flightduration}')");
                                 flights.Add(JsonConvert.DeserializeObject<Flight>(JsonConvert.SerializeObject(responsetest)));
                             }
                         }
@@ -38,6 +42,7 @@ namespace flightsearcher.API
             }
             catch (FlurlHttpException e)
             {
+                Console.WriteLine(e.Message);
                 return flights;
             }
         }

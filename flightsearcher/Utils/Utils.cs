@@ -4,7 +4,7 @@ using Eto.Drawing;
 using flightsearcher.Models;
 using Flurl.Http;
 
-namespace flightsearcher.API
+namespace flightsearcher.Utils
 {
     public class Utils
     {
