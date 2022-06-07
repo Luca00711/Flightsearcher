@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Threading.Tasks;
 using flightsearcher.Models;
 using flightsearcher.Utils;
@@ -15,26 +16,30 @@ namespace flightsearcher.API
             List<Flight> flights = new List<Flight>();
             try
             {
-                var response = await url.WithHeader("User-Agent", "Other").GetJsonAsync();
+                var response = await url.WithHeaders(Utils.Utils.GetHeaders()).GetJsonAsync();
                 foreach(KeyValuePair<string, object> row in response)
                 {
                     if(row.Value is List<object>)
                     {
-                        var responsetest = await $"https://data-live.flightradar24.com/clickhandler/?flight={row.Key}"
-                            .WithHeader("User-Agent", "Other").GetJsonAsync();
-                       if (responsetest.status.live != false)
-                       {
-                           TimeSpan flightDuration = Utils.Utils.GetFlightDuration(responsetest.time.scheduled.departure, responsetest.time.scheduled.arrival);
-                            if (flightDuration <= new TimeSpan(1,10,0))
-                            {
-                                Console.WriteLine("One Added");
-                                responsetest.flightduration = flightDuration;
-                                responsetest.fnac = $"{responsetest.identification.number.@default} | {responsetest.identification.callsign}";
-                                Database db = new Database();
-                                //db.Test();
-                                db.Query($"INSERT INTO flights (aircraft, fnac, depart, arrival, fd) VALUES ('{responsetest.aircraft.model.text}', '{responsetest.fnac}', '{responsetest.airport.origin.code.icao}', '{responsetest.airport.destination.code.icao}', '{responsetest.flightduration}')");
-                                flights.Add(JsonConvert.DeserializeObject<Flight>(JsonConvert.SerializeObject(responsetest)));
-                            }
+                        List<object> rowlist = row.Value as List<object>;
+                        if (rowlist?[11].ToString() == "" || rowlist?[12].ToString() == "") { continue; }
+                        var depart = await Utils.Utils.GetAirport(rowlist?[11].ToString());
+                        var arrival = await Utils.Utils.GetAirport(rowlist?[12].ToString());
+                        TimeSpan flightTime = await Utils.Utils.GetFlightDuration(depart, arrival);
+                        Console.WriteLine(flightTime);
+                        if (flightTime <= new TimeSpan(1, 10, 0))
+                        {
+                            Console.WriteLine("One Added");
+                            dynamic flight = new ExpandoObject();
+                            flight.flightduration = flightTime;
+                            flight.fnac = $"{rowlist?[13]} | {rowlist?[16]}";
+                            flight.departure = depart.icao;
+                            flight.arrival = arrival.icao;
+                            flight.aircraft = rowlist?[8];
+                            flight.registration = rowlist?[9];
+                            Database db = new Database();
+                            db.Query($"INSERT INTO flights (aircraft, fnac, depart, arrival, fd) VALUES ('{flight.aircraft}', '{flight.fnac}', '{flight.departure}', '{flight.arrival}', '{flight.flightduration}')");
+                            flights.Add(JsonConvert.DeserializeObject<Flight>(JsonConvert.SerializeObject(flight)));
                         }
                     }
                 }

@@ -9,7 +9,7 @@ public class Database
     
     public Database()
     {
-        DbConnection = new SQLiteConnection("Data Source='/Users/luca-miguel/dev/c-sharp/flightsearcher/flightsearcher/flights.db';Version=3;");
+        DbConnection = new SQLiteConnection("Data Source='H:/Programmieren/c-sharp/flightsearcher/flightsearcher/flights.db';Version=3;");
     }
     
     public void Query(string query)
