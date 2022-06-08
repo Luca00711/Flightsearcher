@@ -58,6 +58,21 @@ namespace flightsearcher
 			TextBox airline = new TextBox();
 			Button button = new Button();
 			GridView grid = new GridView();
+			DropDown airlines = new DropDown();
+			airlines.LoadComplete += async (sender, e) =>
+			{
+				airlines.DataStore = await Utils.Utils.GetAirlines();
+				airlines.ItemTextBinding = new PropertyBinding<string>("Name");
+				airlines.ItemKeyBinding = new PropertyBinding<string>("ICAO");
+			};
+			airlines.KeyUp += async (sender, e) =>
+			{
+				airlines.SelectedValue = airlines.DataStore.First(x =>
+				{
+					var t = x as Airline;
+					return t.Name.StartsWith(e.Key.ToString());
+				});
+			};
 			ProgressBar progress = new ProgressBar();
 			progress.Indeterminate = true;
 			button.Text = "Suchen";
@@ -71,6 +86,7 @@ namespace flightsearcher
 				grid.Visible = true;
 			};
 			stack.Items.Add(airline);
+			stack.Items.Add(airlines);
 			stack.Items.Add(button);
 			stack.Items.Add(progress);
 			stack.Items.Add(grid);

@@ -49,6 +49,13 @@ namespace flightsearcher.Utils
             return icao.Find(x => x.iata == iata);
         }
 
+        public static async Task<List<Airline>> GetAirlines()
+        {
+            var response = await "https://www.flightradar24.com/_json/airlines.php".GetJsonAsync();
+            List<Airline> airlines = JsonConvert.DeserializeObject<List<Airline>>(JsonConvert.SerializeObject(response.rows));
+            return airlines;
+        }
+
         public static async Task<Image> GetPhoto(string registration)
         {
             Livery photo = await $"https://api.planespotters.net/pub/photos/reg/{registration}".WithHeader("User-Agent", "Other").GetJsonAsync<Livery>();

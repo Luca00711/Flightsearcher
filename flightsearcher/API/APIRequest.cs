@@ -17,6 +17,8 @@ namespace flightsearcher.API
             try
             {
                 var response = await url.WithHeaders(Utils.Utils.GetHeaders()).GetJsonAsync();
+                Database db = new Database();
+                string searchedairline = "";
                 foreach(KeyValuePair<string, object> row in response)
                 {
                     if(row.Value is List<object>)
@@ -37,11 +39,19 @@ namespace flightsearcher.API
                             flight.arrival = arrival.icao;
                             flight.aircraft = rowlist?[8];
                             flight.registration = rowlist?[9];
-                            Database db = new Database();
-                            db.Query($"INSERT INTO flights (aircraft, fnac, depart, arrival, fd) VALUES ('{flight.aircraft}', '{flight.fnac}', '{flight.departure}', '{flight.arrival}', '{flight.flightduration}')");
+                            flight.airline = rowlist?[18];
+                            searchedairline = rowlist?[18].ToString();
+                            db.Query($"INSERT INTO flights (aircraft, fnac, depart, arrival, fd, registration, airline) VALUES ('{flight.aircraft}', '{flight.fnac}', '{flight.departure}', '{flight.arrival}', '{flight.flightduration}', '{flight.registration}', '{flight.airline}')");
                             flights.Add(JsonConvert.DeserializeObject<Flight>(JsonConvert.SerializeObject(flight)));
                         }
                     }
+                }
+                List<Flight> databaselist = db.GetQuery($"SELECT aircraft, fnac, depart, arrival, fd, registration FROM flights WHERE airline = '{searchedairline}'");
+                if (databaselist.Count == 0) {return flights;}
+                foreach (var flight in databaselist)
+                {
+                    if (flights.Find(x => x.fnac == flight.fnac) != null) { continue; }
+                    flights.Add(flight);
                 }
                 return flights;
             }
