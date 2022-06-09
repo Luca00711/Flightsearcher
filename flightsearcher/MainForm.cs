@@ -55,7 +55,6 @@ namespace flightsearcher
 		{
 			StackLayout stack = new StackLayout();
 			stack.BackgroundColor = new Color(0.1f, 0.1f, 0.1f);
-			TextBox airline = new TextBox();
 			Button button = new Button();
 			GridView grid = new GridView();
 			DropDown airlines = new DropDown();
@@ -67,25 +66,34 @@ namespace flightsearcher
 			};
 			airlines.KeyUp += async (sender, e) =>
 			{
-				airlines.SelectedValue = airlines.DataStore.First(x =>
+				try
 				{
-					var t = x as Airline;
-					return t.Name.StartsWith(e.Key.ToString());
-				});
+					airlines.SelectedValue = airlines.DataStore.First(x =>
+					{
+
+						var t = x as Airline;
+						Console.WriteLine(e.Key.ToString());
+						return t.Name.StartsWith(e.Key.ToString());
+					});
+				}
+				catch (Exception)
+				{
+					return;
+				}
 			};
 			ProgressBar progress = new ProgressBar();
 			progress.Indeterminate = true;
 			button.Text = "Suchen";
 			button.Click +=  async (s,e) => {
 				progress.Visible = true;
-				List<Flight> test = await APIRequest.Request($"https://data-cloud.flightradar24.com/zones/fcgi/feed.js/?airline={airline.Text.ToUpper()}&type=A320");
+				Airline selectedAirline = airlines.SelectedValue as Airline;
+				List<Flight> test = await APIRequest.Request($"https://data-cloud.flightradar24.com/zones/fcgi/feed.js/?airline={selectedAirline.ICAO}&type=A320", selectedAirline.ICAO);
 				grid.DataStore = test;
 				grid.Width = Bounds.Width;
 				grid.Height = 150;
 				progress.Visible = false;
 				grid.Visible = true;
 			};
-			stack.Items.Add(airline);
 			stack.Items.Add(airlines);
 			stack.Items.Add(button);
 			stack.Items.Add(progress);
@@ -99,9 +107,20 @@ namespace flightsearcher
 			grid.CellClick +=  (s, e)  => {
 				Flight flight = e.Item as Flight;
 				ContextMenu menu = new ContextMenu();
-				MenuItem item = new Command().CreateMenuItem();
-				item.Text = "Show livery";
-				item.Click += async (sender, a) => {
+				MenuItem route = new Command().CreateMenuItem();
+				route.Text = "Show route";
+				route.Click += async (sender, a) => {
+					Dialog dialog = new Dialog();
+					dialog.Title = "Route";
+					StackLayout layout = new StackLayout();
+					dialog.Content = layout;
+					layout.Items.Add(new Label() { Text = flight.departure, TextAlignment = TextAlignment.Center, Width = dialog.Width});
+					layout.Items.Add(new Label() { Text = flight.arrival, TextAlignment = TextAlignment.Center, Width = dialog.Width});
+					dialog.ShowModal(this);
+				};
+				MenuItem livery = new Command().CreateMenuItem();
+				livery.Text = "Show livery";
+				livery.Click += async (sender, a) => {
 					Dialog dialog = new Dialog();
 					dialog.Title = "Livery";
 					StackLayout layout = new StackLayout();
@@ -109,7 +128,8 @@ namespace flightsearcher
 					dialog.Content = layout;
 					await dialog.ShowModalAsync(this);
 				};
-				menu.Items.Add(item);
+				menu.Items.Add(route);
+				menu.Items.Add(livery);
 
 				if (e.Buttons == MouseButtons.Alternate)
 				{

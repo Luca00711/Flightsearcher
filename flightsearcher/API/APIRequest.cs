@@ -11,14 +11,13 @@ namespace flightsearcher.API
 {
     public class APIRequest
     {
-        public static async Task<List<Flight>> Request(string url)
+        public static async Task<List<Flight>> Request(string url, string airline)
         {
             List<Flight> flights = new List<Flight>();
             try
             {
                 var response = await url.WithHeaders(Utils.Utils.GetHeaders()).GetJsonAsync();
                 Database db = new Database();
-                string searchedairline = "";
                 foreach(KeyValuePair<string, object> row in response)
                 {
                     if(row.Value is List<object>)
@@ -31,7 +30,7 @@ namespace flightsearcher.API
                         Console.WriteLine(flightTime);
                         if (flightTime <= new TimeSpan(1, 10, 0))
                         {
-                            Console.WriteLine("One Added");
+                            Console.WriteLine("One added");
                             dynamic flight = new ExpandoObject();
                             flight.flightduration = flightTime;
                             flight.fnac = $"{rowlist?[13]} | {rowlist?[16]}";
@@ -40,17 +39,21 @@ namespace flightsearcher.API
                             flight.aircraft = rowlist?[8];
                             flight.registration = rowlist?[9];
                             flight.airline = rowlist?[18];
-                            searchedairline = rowlist?[18].ToString();
                             db.Query($"INSERT INTO flights (aircraft, fnac, depart, arrival, fd, registration, airline) VALUES ('{flight.aircraft}', '{flight.fnac}', '{flight.departure}', '{flight.arrival}', '{flight.flightduration}', '{flight.registration}', '{flight.airline}')");
                             flights.Add(JsonConvert.DeserializeObject<Flight>(JsonConvert.SerializeObject(flight)));
                         }
                     }
                 }
-                List<Flight> databaselist = db.GetQuery($"SELECT aircraft, fnac, depart, arrival, fd, registration FROM flights WHERE airline = '{searchedairline}'");
+                List<Flight> databaselist = db.GetQuery($"SELECT aircraft, fnac, depart, arrival, fd, registration FROM flights WHERE airline = '{airline}'");
+                foreach (Flight flight in databaselist)
+                {
+                    Console.WriteLine(flight.registration);
+                }
                 if (databaselist.Count == 0) {return flights;}
                 foreach (var flight in databaselist)
                 {
                     if (flights.Find(x => x.fnac == flight.fnac) != null) { continue; }
+                    Console.WriteLine("One added from database");
                     flights.Add(flight);
                 }
                 return flights;
