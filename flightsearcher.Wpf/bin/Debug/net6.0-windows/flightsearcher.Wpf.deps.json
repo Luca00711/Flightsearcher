@@ -1,0 +1,263 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "flightsearcher.Wpf/1.0.0": {
+        "dependencies": {
+          "Eto.Platform.Wpf": "2.7.0",
+          "flightsearcher": "1.0.0"
+        },
+        "runtime": {
+          "flightsearcher.Wpf.dll": {}
+        }
+      },
+      "Eto.Forms/2.7.0": {
+        "dependencies": {
+          "System.ComponentModel.Annotations": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Eto.dll": {
+            "assemblyVersion": "2.6.0.0",
+            "fileVersion": "2.6.8162.8450"
+          }
+        }
+      },
+      "Eto.Platform.Wpf/2.7.0": {
+        "dependencies": {
+          "Eto.Forms": "2.7.0",
+          "Extended.Wpf.Toolkit": "3.6.0",
+          "Microsoft-WindowsAPICodePack-Shell": "1.1.4"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Eto.Wpf.dll": {
+            "assemblyVersion": "2.7.0.0",
+            "fileVersion": "2.7.8162.8450"
+          }
+        }
+      },
+      "Extended.Wpf.Toolkit/3.6.0": {
+        "runtime": {
+          "lib/net40/Xceed.Wpf.AvalonDock.Themes.Aero.dll": {
+            "assemblyVersion": "3.6.0.0",
+            "fileVersion": "3.6.0.0"
+          },
+          "lib/net40/Xceed.Wpf.AvalonDock.Themes.Metro.dll": {
+            "assemblyVersion": "3.6.0.0",
+            "fileVersion": "3.6.0.0"
+          },
+          "lib/net40/Xceed.Wpf.AvalonDock.Themes.VS2010.dll": {
+            "assemblyVersion": "3.6.0.0",
+            "fileVersion": "3.6.0.0"
+          },
+          "lib/net40/Xceed.Wpf.AvalonDock.dll": {
+            "assemblyVersion": "3.6.0.0",
+            "fileVersion": "3.6.0.0"
+          },
+          "lib/net40/Xceed.Wpf.Toolkit.dll": {
+            "assemblyVersion": "3.6.0.0",
+            "fileVersion": "3.6.0.0"
+          }
+        },
+        "resources": {
+          "lib/net40/de/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net40/es/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net40/fr/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net40/hu/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "hu"
+          },
+          "lib/net40/it/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net40/pt-BR/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net40/ro/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "ro"
+          },
+          "lib/net40/ru/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net40/sv/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "sv"
+          },
+          "lib/net40/zh-Hans/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "zh-Hans"
+          }
+        }
+      },
+      "Flurl/3.0.6": {
+        "runtime": {
+          "lib/netstandard2.0/Flurl.dll": {
+            "assemblyVersion": "3.0.6.0",
+            "fileVersion": "3.0.6.0"
+          }
+        }
+      },
+      "Flurl.Http/3.2.4": {
+        "dependencies": {
+          "Flurl": "3.0.6",
+          "Newtonsoft.Json": "13.0.1",
+          "System.Text.Encoding.CodePages": "4.5.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Flurl.Http.dll": {
+            "assemblyVersion": "3.2.4.0",
+            "fileVersion": "3.2.4.0"
+          }
+        }
+      },
+      "Microsoft-WindowsAPICodePack-Core/1.1.4": {
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.WindowsAPICodePack.dll": {
+            "assemblyVersion": "1.1.4.0",
+            "fileVersion": "1.1.4.0"
+          }
+        }
+      },
+      "Microsoft-WindowsAPICodePack-Shell/1.1.4": {
+        "dependencies": {
+          "Microsoft-WindowsAPICodePack-Core": "1.1.4"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.WindowsAPICodePack.Shell.dll": {
+            "assemblyVersion": "1.1.4.0",
+            "fileVersion": "1.1.4.0"
+          }
+        }
+      },
+      "Microsoft.NETCore.Platforms/2.1.2": {},
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
+          }
+        }
+      },
+      "System.ComponentModel.Annotations/5.0.0": {},
+      "System.Runtime.CompilerServices.Unsafe/4.5.2": {},
+      "System.Text.Encoding.CodePages/4.5.1": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.1.2",
+          "System.Runtime.CompilerServices.Unsafe": "4.5.2"
+        }
+      },
+      "flightsearcher/1.0.0": {
+        "dependencies": {
+          "Eto.Forms": "2.7.0",
+          "Flurl.Http": "3.2.4",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "flightsearcher.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "flightsearcher.Wpf/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Eto.Forms/2.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+cVoTdyb0lx2owvEdgLkHYd2wD4tkr9fIg6+hW0V54zq42NuddWYfoKAukLwwJb/wGoPihbYk8d7yxLPdGbmqQ==",
+      "path": "eto.forms/2.7.0",
+      "hashPath": "eto.forms.2.7.0.nupkg.sha512"
+    },
+    "Eto.Platform.Wpf/2.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-U1GezdPfyvI6bdfmLv7afxm1H6PWUqYG82moNtRDZ3hcIzaqMhPAdl1CywiD6kJIqYcW6u9kLid3Ux1UehxEMQ==",
+      "path": "eto.platform.wpf/2.7.0",
+      "hashPath": "eto.platform.wpf.2.7.0.nupkg.sha512"
+    },
+    "Extended.Wpf.Toolkit/3.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-flfPS2rtbCCXJv7m43MXBJWaPN0RsVRQn3MZO2VmMjs4pOHzL7WnsaSXbs0OHTLj71SA/+T4hdZC8f4FhvJSkA==",
+      "path": "extended.wpf.toolkit/3.6.0",
+      "hashPath": "extended.wpf.toolkit.3.6.0.nupkg.sha512"
+    },
+    "Flurl/3.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XMIlB/tJ4nTYF2+79xDsnnlgbXHpKyizKX2fffrECekI6pEsa9MSLzf5tPVMdLy4k4AcJPLs356Sa2Le5VRDCw==",
+      "path": "flurl/3.0.6",
+      "hashPath": "flurl.3.0.6.nupkg.sha512"
+    },
+    "Flurl.Http/3.2.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Me9Vm4Lm21vt/pbR0G2Dww/ZOjJgh6mB2FiH28aiUYStJD10ZecDp8jxg2zKxcy6lnkvLm99pjG4yC/k7a/d8w==",
+      "path": "flurl.http/3.2.4",
+      "hashPath": "flurl.http.3.2.4.nupkg.sha512"
+    },
+    "Microsoft-WindowsAPICodePack-Core/1.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gsEStalyKPTR5/HKyAHYvIoDZTGUTUgIBS1eeGvkjWgDYB7f5aSBFAAJfxhhDsOGDjLs6O0uzw1H0EWYWZGDmg==",
+      "path": "microsoft-windowsapicodepack-core/1.1.4",
+      "hashPath": "microsoft-windowsapicodepack-core.1.1.4.nupkg.sha512"
+    },
+    "Microsoft-WindowsAPICodePack-Shell/1.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EtoEx9Fx3ZGW//sni9TB1vuBvzXIlyG8E2KNaX7bqV240aiU8RP+NmDHd1ox0YKbJDMxq7AWSI2jPhpLMYXKyw==",
+      "path": "microsoft-windowsapicodepack-shell/1.1.4",
+      "hashPath": "microsoft-windowsapicodepack-shell.1.1.4.nupkg.sha512"
+    },
+    "Microsoft.NETCore.Platforms/2.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mOJy3M0UN+LUG21dLGMxaWZEP6xYpQEpLuvuEQBaownaX4YuhH6NmNUlN9si+vNkAS6dwJ//N1O4DmLf2CikVg==",
+      "path": "microsoft.netcore.platforms/2.1.2",
+      "hashPath": "microsoft.netcore.platforms.2.1.2.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    },
+    "System.ComponentModel.Annotations/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dMkqfy2el8A8/I76n2Hi1oBFEbG1SfxD2l5nhwXV3XjlnOmwxJlQbYpJH4W51odnU9sARCSAgv7S3CyAFMkpYg==",
+      "path": "system.componentmodel.annotations/5.0.0",
+      "hashPath": "system.componentmodel.annotations.5.0.0.nupkg.sha512"
+    },
+    "System.Runtime.CompilerServices.Unsafe/4.5.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wprSFgext8cwqymChhrBLu62LMg/1u92bU+VOwyfBimSPVFXtsNqEWC92Pf9ofzJFlk4IHmJA75EDJn1b2goAQ==",
+      "path": "system.runtime.compilerservices.unsafe/4.5.2",
+      "hashPath": "system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
+    },
+    "System.Text.Encoding.CodePages/4.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4J2JQXbftjPMppIHJ7IC+VXQ9XfEagN92vZZNoG12i+zReYlim5dMoXFC1Zzg7tsnKDM7JPo5bYfFK4Jheq44w==",
+      "path": "system.text.encoding.codepages/4.5.1",
+      "hashPath": "system.text.encoding.codepages.4.5.1.nupkg.sha512"
+    },
+    "flightsearcher/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
