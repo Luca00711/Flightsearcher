@@ -29,7 +29,7 @@ jobs:
     - name: commit
       run: |
           # Stage the file, commit and push
-          git add flightsearcher.Wpf/bin
+          git add flightsearcher.Wpf/bin -f
           git commit -m "new build commit"
           git push origin Luca00711-patch-1
       
