@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SQLite;
-using flightsearcher.Models;
+using Flightsearcher.Models;
 
-namespace flightsearcher.Utils;
+namespace Flightsearcher.Utils;
 
 public class Database
 { 
@@ -12,7 +12,7 @@ public class Database
     
     public Database()
     {
-        DbConnection = new SQLiteConnection("Data Source='H:/Programmieren/c-sharp/flightsearcher/flightsearcher/flights.db';Version=3;");
+        DbConnection = new SQLiteConnection("Data Source='H:/Programmieren/c-sharp/Flightsearcher/Flightsearcher/flights.db';Version=3;");
     }
     
     public void Query(string query)
