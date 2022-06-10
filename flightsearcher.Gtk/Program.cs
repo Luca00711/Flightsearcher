@@ -1,7 +1,7 @@
 ﻿using System;
 using Eto.Forms;
 
-namespace flightsearcher.Gtk
+namespace Flightsearcher.Gtk
 {
 	class Program
 	{

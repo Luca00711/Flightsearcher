@@ -1,7 +1,7 @@
 ﻿using System;
 using Eto.Forms;
 
-namespace flightsearcher.Mac
+namespace Flightsearcher.Mac
 {
 	class Program
 	{

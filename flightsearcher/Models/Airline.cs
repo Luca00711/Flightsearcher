@@ -1,4 +1,4 @@
-namespace flightsearcher.Models;
+namespace Flightsearcher.Models;
 
 public class Airline
 {

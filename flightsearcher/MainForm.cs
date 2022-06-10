@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Eto.Forms;
 using Eto.Drawing;
-using flightsearcher.API;
-using flightsearcher.Models;
+using Flightsearcher.API;
+using Flightsearcher.Models;
 
-namespace flightsearcher
+namespace Flightsearcher
 {
 	public partial class MainForm : Form
 	{
@@ -114,8 +114,8 @@ namespace flightsearcher
 					dialog.Title = "Route";
 					StackLayout layout = new StackLayout();
 					dialog.Content = layout;
-					layout.Items.Add(new Label() { Text = flight.departure, TextAlignment = TextAlignment.Center, Width = dialog.Width});
-					layout.Items.Add(new Label() { Text = flight.arrival, TextAlignment = TextAlignment.Center, Width = dialog.Width});
+					layout.Items.Add(new Label { Text = flight.departure, TextAlignment = TextAlignment.Center, Width = dialog.Width});
+					layout.Items.Add(new Label { Text = flight.arrival, TextAlignment = TextAlignment.Center, Width = dialog.Width});
 					dialog.ShowModal(this);
 				};
 				MenuItem livery = new Command().CreateMenuItem();
@@ -124,7 +124,7 @@ namespace flightsearcher
 					Dialog dialog = new Dialog();
 					dialog.Title = "Livery";
 					StackLayout layout = new StackLayout();
-					layout.Items.Add(new ImageView() {Image = await Utils.Utils.GetPhoto(flight?.registration.ToString())});
+					layout.Items.Add(new ImageView {Image = await Utils.Utils.GetPhoto(flight?.registration.ToString())});
 					dialog.Content = layout;
 					await dialog.ShowModalAsync(this);
 				};

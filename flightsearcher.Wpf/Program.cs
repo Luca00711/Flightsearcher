@@ -1,7 +1,7 @@
 ﻿using System;
 using Eto.Forms;
 
-namespace flightsearcher.Wpf
+namespace Flightsearcher.Wpf
 {
 	class Program
 	{

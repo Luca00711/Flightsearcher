@@ -4,11 +4,11 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Eto.Drawing;
-using flightsearcher.Models;
+using Flightsearcher.Models;
 using Flurl.Http;
 using Newtonsoft.Json;
 
-namespace flightsearcher.Utils
+namespace Flightsearcher.Utils
 {
     public class Utils
     { 

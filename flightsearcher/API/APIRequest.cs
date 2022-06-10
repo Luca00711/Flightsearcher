@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Threading.Tasks;
-using flightsearcher.Models;
-using flightsearcher.Utils;
+using Flightsearcher.Models;
+using Flightsearcher.Utils;
 using Flurl.Http;
 using Newtonsoft.Json;
 
-namespace flightsearcher.API
+namespace Flightsearcher.API
 {
     public class APIRequest
     {
