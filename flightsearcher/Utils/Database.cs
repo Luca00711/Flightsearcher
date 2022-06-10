@@ -4,6 +4,7 @@ using System.Data.Common;
 using System.Data.SQLite;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using Flightsearcher.Models;
 
 namespace Flightsearcher.Utils;
@@ -14,10 +15,21 @@ public class Database
     {
         Console.WriteLine(Environment.OSVersion.Platform);
         string path = "";
-        string seperator = Environment.OSVersion.Platform.ToString() == "Win32NT" ? "\\" : "/";
+        string seperator = RuntimeInformation.OSDescription.Contains("Windows") ? "\\" : "/";
         foreach (var sub in AppDomain.CurrentDomain.BaseDirectory.Split(seperator))
         {
-            if (sub == "Flightsearcher.Wpf") break;
+            if (RuntimeInformation.OSDescription.Contains("Windows"))
+            {
+                if (sub == "Flightsearcher.Wpf") break;
+            } 
+            else if (RuntimeInformation.OSDescription.Contains("Darwin"))
+            {
+                if (sub == "Flightsearcher.Mac") break;
+            }
+            else
+            {
+                if (sub == "Flightsearcher.Gtk") break;
+            }
             path += sub + seperator;
         }
 

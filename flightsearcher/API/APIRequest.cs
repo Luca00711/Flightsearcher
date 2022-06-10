@@ -31,7 +31,7 @@ namespace Flightsearcher.API
 
                         var depart = airports.Find(x => x.iata == rowlist?[11].ToString());
                         var arrival = airports.Find(x => x.iata == rowlist?[12].ToString());
-                        TimeSpan flightTime = await Utils.Utils.GetFlightDuration(depart, arrival);
+                        TimeSpan flightTime = Utils.Utils.GetFlightDuration(depart, arrival);
                         Console.WriteLine(flightTime);
                         if (flightTime <= new TimeSpan(1, 10, 0))
                         {

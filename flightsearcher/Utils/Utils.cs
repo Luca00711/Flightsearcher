@@ -17,7 +17,7 @@ namespace Flightsearcher.Utils
             return (Math.PI / 180) * angle;
         }
 
-        public static async Task<TimeSpan> GetFlightDuration(Airport depart, Airport arrival)
+        public static TimeSpan GetFlightDuration(Airport depart, Airport arrival)
         {
             //var calculated = await $"https://flighttime-calculator.com/calculate?lat1={depart.lat.ToString(CultureInfo.InvariantCulture)}&lng1={depart.lon.ToString(CultureInfo.InvariantCulture)}&lat2={arrival.lat.ToString(CultureInfo.InvariantCulture)}&lng2={arrival.lon.ToString(CultureInfo.InvariantCulture)}&departure_datetime=06/06/2022+10:49+PM".GetJsonAsync();
             // The radius of the earth in Km.

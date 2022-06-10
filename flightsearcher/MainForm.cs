@@ -64,9 +64,13 @@ namespace Flightsearcher
                 airlines.DataStore = await Utils.Utils.GetAirlines();
                 airlines.ItemTextBinding = new PropertyBinding<string>("Name");
                 airlines.ItemKeyBinding = new PropertyBinding<string>("ICAO");
+                airlines.SelectedValue = airlines.DataStore.First(x =>
+                {
+                    Airline y = x as Airline;
+                    return y.ICAO == "DLH";
+                });
             };
-            string test = "";
-            airlines.KeyUp += async (sender, e) =>
+            airlines.KeyUp += (sender, e) =>
             {
                 try
                 {
@@ -115,7 +119,7 @@ namespace Flightsearcher
                 ContextMenu menu = new ContextMenu();
                 MenuItem route = new Command().CreateMenuItem();
                 route.Text = "Show route";
-                route.Click += async (sender, a) =>
+                route.Click += (sender, a) =>
                 {
                     Dialog dialog = new Dialog();
                     dialog.Title = "Route";

@@ -10,14 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7aa6ff10-bef6-43df-bb1f-d8e414b0c861" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/flights.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flightsearcher/logox512.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.flightsearcher.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.flightsearcher.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Folder.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Folder.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flightsearcher/MainForm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/flightsearcher/MainForm.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flightsearcher/Utils/Database.cs" beforeDir="false" afterPath="$PROJECT_DIR$/flightsearcher/Utils/Database.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flightsearcher/flights.db" beforeDir="false" afterPath="$PROJECT_DIR$/flightsearcher/flights.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flightsearcher/flightsearcher.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/flightsearcher/flightsearcher.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Flightsearcher/MainForm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Flightsearcher/MainForm.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,18 +21,6 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/366a80928a014fceb5ee4fa47ff98dbeb5400/e1/93fb4c1d/Icon.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f3b9684f72bc2cc435eb694f7cc86eca8c240d2d1cefa1e8697a61f1f2f27f/SafeFileHandle.Windows.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://H:/Programmieren/c-sharp/Flightsearcher/Flightsearcher/MainForm.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://H:/Programmieren/c-sharp/Flightsearcher/Flightsearcher/MainForm.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://H:/Programmieren/c-sharp/Flightsearcher/Flightsearcher/Utils/Database.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://H:/Programmieren/c-sharp/Flightsearcher/Flightsearcher/Utils/Database.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://H:/Programmieren/c-sharp/Flightsearcher/Flightsearcher/Utils/Database.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://H:/Programmieren/c-sharp/Flightsearcher/Flightsearcher/Utils/Database.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://H:/Programmieren/c-sharp/Flightsearcher/Flightsearcher/Utils/Database.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://H:/Programmieren/c-sharp/Flightsearcher/Flightsearcher/Utils/Database.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://H:/Programmieren/c-sharp/Flightsearcher/Flightsearcher/Utils/Database.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://H:/Programmieren/c-sharp/Flightsearcher/Flightsearcher/Utils/Database.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://H:/Programmieren/c-sharp/Flightsearcher/Flightsearcher/Utils/Database.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://H:/Programmieren/c-sharp/Flightsearcher/Flightsearcher/Utils/Database.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -51,21 +33,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "settings.editor.selected.configurable": "RiderNuGetOptionsPageId",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;RiderNuGetOptionsPageId&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Project.Flightsearcher.Wpf">
     <configuration name="Flightsearcher.Gtk" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -138,7 +120,8 @@
       <workItem from="1654863832474" duration="15000" />
       <workItem from="1654863885556" duration="1917000" />
       <workItem from="1654892449798" duration="691000" />
-      <workItem from="1654893556147" duration="4150000" />
+      <workItem from="1654893556147" duration="4326000" />
+      <workItem from="1654902704078" duration="982000" />
     </task>
     <task id="LOCAL-00001" summary="Changed to Uppercase Namespace">
       <created>1654864021553</created>
@@ -161,7 +144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654864087493</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="* Changed dynamic database path&#10;* Reformatted code by Rider&#10;* Added icon as embedded ressource">
+      <created>1654897906360</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1654897906360</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,7 +175,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Changed to Uppercase Namespace" />
     <MESSAGE value="*" />
-    <option name="LAST_COMMIT_MESSAGE" value="*" />
+    <MESSAGE value="* Changed dynamic database path&#10;* Reformatted code by Rider&#10;* Added icon as embedded ressource" />
+    <option name="LAST_COMMIT_MESSAGE" value="* Changed dynamic database path&#10;* Reformatted code by Rider&#10;* Added icon as embedded ressource" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
