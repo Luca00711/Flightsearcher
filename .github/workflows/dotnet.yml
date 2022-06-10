@@ -34,4 +34,11 @@ jobs:
           git add flightsearcher.Wpf/bin -f
           git commit -m "new build commit"
           git push -u origin "Luca00711-patch-1" -f
+    - uses: montudor/action-zip@v1
+      with:
+        args: zip -qq -r release.zip flightsearcher.Wpf/bin/Debug/net6.0-windows/
+    - name: Release
+      uses: ncipollo/release-action@v1.10.0
+      with:
+          artifacts: "release.zip"
       
