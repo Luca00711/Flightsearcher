@@ -12,41 +12,49 @@ namespace flightsearcher.Utils
 {
     public class Utils
     { 
+        static double ConvertToRadians(double angle)
+        {
+            return (Math.PI / 180) * angle;
+        }
+        
         public static async Task<TimeSpan> GetFlightDuration(Airport depart, Airport arrival)
         {
-            var calculated = await $"https://flighttime-calculator.com/calculate?lat1={depart.lat.ToString(CultureInfo.InvariantCulture)}&lng1={depart.lon.ToString(CultureInfo.InvariantCulture)}&lat2={arrival.lat.ToString(CultureInfo.InvariantCulture)}&lng2={arrival.lon.ToString(CultureInfo.InvariantCulture)}&departure_datetime=06/06/2022+10:49+PM".GetJsonAsync();
-            return ConvertToTimeSpan(calculated.flight_time);
+            //var calculated = await $"https://flighttime-calculator.com/calculate?lat1={depart.lat.ToString(CultureInfo.InvariantCulture)}&lng1={depart.lon.ToString(CultureInfo.InvariantCulture)}&lat2={arrival.lat.ToString(CultureInfo.InvariantCulture)}&lng2={arrival.lon.ToString(CultureInfo.InvariantCulture)}&departure_datetime=06/06/2022+10:49+PM".GetJsonAsync();
+            // The radius of the earth in Km.
+            // You could also use a better estimation of the radius of the earth
+            // using decimals digits, but you have to change then the int to double.
+            double latitude1 = depart.lat;
+            double latitude2 = arrival.lat;
+            double longitude1 = depart.lon;
+            double longitude2 = arrival.lon;
+            int R = 6371; 
+
+            double f1 = ConvertToRadians(latitude1);
+            double f2 = ConvertToRadians(latitude2);
+
+            double df = ConvertToRadians(latitude1-latitude2);
+            double dl = ConvertToRadians(longitude1-longitude2);
+
+            double a = Math.Sin(df/2) * Math.Sin(df/2) +
+                       Math.Cos(f1) * Math.Cos(f2) *
+                       Math.Sin(dl/2) * Math.Sin(dl/2);
+
+            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1-a));
+
+            // Calculate the distance.
+            double d = R * c;
+
+            d = d / 446.1;
+
+
+            return TimeSpan.FromSeconds(Math.Round(TimeSpan.FromHours(d).TotalSeconds));
+            
         }
-        
-        public static TimeSpan ConvertToTimeSpan(string input)
-        {
-            var units = new Dictionary<string, int>()
-            {
-                {@"(\d+)(?:ms|mili(?:secon)?s?)", 1 },
-                {@"(\d+)(?:s(?:ec)?|seconds?)", 1000 },
-                {@"(\d+)(?:m|mins?)", 60000 },
-                {@"(\d+)(?:h|hours?)", 3600000 },
-                {@"(\d+)(?:d|days?)", 86400000 },
-                {@"(\d+)(?:w|weeks?)", 604800000 },
-            };
-            var timespan = new TimeSpan();
-            foreach(var x in units)
-            {
-                var matches = Regex.Matches(input, x.Key);
-                foreach(Match match in matches)
-                {
-                    var amount = Convert.ToInt32(match.Groups[1].Value);
-                    timespan = timespan.Add(TimeSpan.FromMilliseconds(x.Value * amount));
-                }
-            }
-            return timespan;
-        }
-        
-        public static async Task<Airport> GetAirport(string iata)
+
+        public static async Task<List<Airport>> GetAirports()
         {
             var response = await "https://www.flightradar24.com/_json/airports.php".GetJsonAsync();
-            List<Airport> icao = JsonConvert.DeserializeObject<List<Airport>>(JsonConvert.SerializeObject(response.rows));
-            return icao.Find(x => x.iata == iata);
+            return JsonConvert.DeserializeObject<List<Airport>>(JsonConvert.SerializeObject(response.rows));
         }
 
         public static async Task<List<Airline>> GetAirlines()

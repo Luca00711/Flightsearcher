@@ -18,14 +18,15 @@ namespace flightsearcher.API
             {
                 var response = await url.WithHeaders(Utils.Utils.GetHeaders()).GetJsonAsync();
                 Database db = new Database();
+                List <Airport> airports = await Utils.Utils.GetAirports();
                 foreach(KeyValuePair<string, object> row in response)
                 {
                     if(row.Value is List<object>)
                     {
                         List<object> rowlist = row.Value as List<object>;
                         if (rowlist?[11].ToString() == "" || rowlist?[12].ToString() == "") { continue; }
-                        var depart = await Utils.Utils.GetAirport(rowlist?[11].ToString());
-                        var arrival = await Utils.Utils.GetAirport(rowlist?[12].ToString());
+                        var depart = airports.Find(x => x.iata == rowlist?[11].ToString());
+                        var arrival = airports.Find(x => x.iata == rowlist?[12].ToString());
                         TimeSpan flightTime = await Utils.Utils.GetFlightDuration(depart, arrival);
                         Console.WriteLine(flightTime);
                         if (flightTime <= new TimeSpan(1, 10, 0))
