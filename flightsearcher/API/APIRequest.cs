@@ -18,13 +18,17 @@ namespace Flightsearcher.API
             {
                 var response = await url.WithHeaders(Utils.Utils.GetHeaders()).GetJsonAsync();
                 Database db = new Database();
-                List <Airport> airports = await Utils.Utils.GetAirports();
-                foreach(KeyValuePair<string, object> row in response)
+                List<Airport> airports = await Utils.Utils.GetAirports();
+                foreach (KeyValuePair<string, object> row in response)
                 {
-                    if(row.Value is List<object>)
+                    if (row.Value is List<object>)
                     {
                         List<object> rowlist = row.Value as List<object>;
-                        if (rowlist?[11].ToString() == "" || rowlist?[12].ToString() == "") { continue; }
+                        if (rowlist?[11].ToString() == "" || rowlist?[12].ToString() == "")
+                        {
+                            continue;
+                        }
+
                         var depart = airports.Find(x => x.iata == rowlist?[11].ToString());
                         var arrival = airports.Find(x => x.iata == rowlist?[12].ToString());
                         TimeSpan flightTime = await Utils.Utils.GetFlightDuration(depart, arrival);
@@ -40,23 +44,37 @@ namespace Flightsearcher.API
                             flight.aircraft = rowlist?[8];
                             flight.registration = rowlist?[9];
                             flight.airline = rowlist?[18];
-                            db.Query($"INSERT INTO flights (aircraft, fnac, depart, arrival, fd, registration, airline) VALUES ('{flight.aircraft}', '{flight.fnac}', '{flight.departure}', '{flight.arrival}', '{flight.flightduration}', '{flight.registration}', '{flight.airline}')");
+                            db.Query(
+                                $"INSERT INTO flights (aircraft, fnac, depart, arrival, fd, registration, airline) VALUES ('{flight.aircraft}', '{flight.fnac}', '{flight.departure}', '{flight.arrival}', '{flight.flightduration}', '{flight.registration}', '{flight.airline}')");
                             flights.Add(JsonConvert.DeserializeObject<Flight>(JsonConvert.SerializeObject(flight)));
                         }
                     }
                 }
-                List<Flight> databaselist = db.GetQuery($"SELECT aircraft, fnac, depart, arrival, fd, registration FROM flights WHERE airline = '{airline}'");
+
+                List<Flight> databaselist =
+                    db.GetQuery(
+                        $"SELECT aircraft, fnac, depart, arrival, fd, registration FROM flights WHERE airline = '{airline}'");
                 foreach (Flight flight in databaselist)
                 {
                     Console.WriteLine(flight.registration);
                 }
-                if (databaselist.Count == 0) {return flights;}
+
+                if (databaselist.Count == 0)
+                {
+                    return flights;
+                }
+
                 foreach (var flight in databaselist)
                 {
-                    if (flights.Find(x => x.fnac == flight.fnac) != null) { continue; }
+                    if (flights.Find(x => x.fnac == flight.fnac) != null)
+                    {
+                        continue;
+                    }
+
                     Console.WriteLine("One added from database");
                     flights.Add(flight);
                 }
+
                 return flights;
             }
             catch (FlurlHttpException e)

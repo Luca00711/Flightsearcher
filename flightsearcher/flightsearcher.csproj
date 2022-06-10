@@ -12,4 +12,13 @@
     <PackageReference Remove="NETStandard.Library" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="logox512.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="logox512.ico" />
+    <EmbeddedResource Include="logox512.ico" />
+  </ItemGroup>
+
 </Project>

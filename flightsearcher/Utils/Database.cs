@@ -2,19 +2,31 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SQLite;
+using System.IO;
+using System.Reflection;
 using Flightsearcher.Models;
 
 namespace Flightsearcher.Utils;
 
 public class Database
-{ 
-    SQLiteConnection DbConnection { get; set; }
-    
+{
     public Database()
     {
-        DbConnection = new SQLiteConnection("Data Source='H:/Programmieren/c-sharp/Flightsearcher/Flightsearcher/flights.db';Version=3;");
+        Console.WriteLine(Environment.OSVersion.Platform);
+        string path = "";
+        string seperator = Environment.OSVersion.Platform.ToString() == "Win32NT" ? "\\" : "/";
+        foreach (var sub in AppDomain.CurrentDomain.BaseDirectory.Split(seperator))
+        {
+            if (sub == "Flightsearcher.Wpf") break;
+            path += sub + seperator;
+        }
+
+        path += $"Flightsearcher{seperator}flights.db";
+        DbConnection = new SQLiteConnection($"Data Source={path};Version=3;");
     }
-    
+
+    SQLiteConnection DbConnection { get; set; }
+
     public void Query(string query)
     {
         try
@@ -31,7 +43,7 @@ public class Database
             DbConnection.Close();
         }
     }
-    
+
     public List<Flight> GetQuery(string query)
     {
         List<Flight> flights = new List<Flight>();
@@ -52,6 +64,7 @@ public class Database
                 flight.registration = reader.GetString(5);
                 flights.Add(flight);
             }
+
             DbConnection.Close();
             return flights;
         }
@@ -75,6 +88,5 @@ public class Database
             Console.WriteLine(e.Message);
             DbConnection.Close();
         }
-        
     }
 }
