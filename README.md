@@ -8,3 +8,4 @@ This program finds active Flights from Flightradar24 and SQLite database and sho
 - [ ] Remove some unused code
 - [ ] Complete refactoring
 - [ ] Make program faster and more efficience
+- [ ] Make GUI more beautiful
